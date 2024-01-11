@@ -1,0 +1,208 @@
+<section class="flex gap-5 py-5">
+  <!-- Item Main -->
+  <img class="w-1/2 rounded-3xl" src="{{image}}" alt="" />
+  <div class="flex flex-col justify-between">
+    <!-- Product name -->
+    <h1 class="text-6xl font-bold">{{item}}</h1>
+    <!-- Seller -->
+    <span class="text-xl font-light">XLNC</span>
+    <!-- Price -->
+    <span class="text-2xl font-bold">Price: {{price}}</span>
+    <!-- Rating -->
+    <span></span>
+    <!-- Option -->
+    <div>
+      <button
+        class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-[#D9AE87] hover:bg-opacity-75 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+      >
+        SM
+      </button>
+      <button
+        class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-[#D9AE87] hover:bg-opacity-75 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+      >
+        MD
+      </button>
+      <button
+        class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-[#D9AE87] hover:bg-opacity-75 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+      >
+        LG
+      </button>
+      <button
+        class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-[#D9AE87] hover:bg-opacity-75 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+      >
+        XL
+      </button>
+    </div>
+    <div class="space-x-2">
+      <a
+        id="maya_buy"
+        href=""
+        class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-[#331904] text-[#D9AE87] hover:bg-opacity-75 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+      >
+        Buy now
+      </a>
+      <a
+        href="/cart"
+        class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-[#D9AE87] hover:bg-opacity-75 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+      >
+        Add to cart
+      </a>
+    </div>
+  </div>
+</section>
+<section class="py-4 space-y-4">
+  <h2 class="text-4xl font-bold">You may also like</h2>
+  <div class="flex flex-wrap gap-4">
+    {% for item in recommendations %}
+    <a
+      class="w-64 h-full flex flex-col border shadow-sm rounded-xl bg-[#F3E0D2] text-inherit border-orange-900"
+      href="/product/?id={{item['id']}}"
+    >
+      <img
+        class="w-full h-auto rounded-t-xl object-contain"
+        src="{{item['image']}}"
+        alt="Image Description"
+      />
+      <div class="p-4 md:p-5">
+        <h3 class="text-lg font-bold">{{item['item']}}</h3>
+        <p class="mt-1 flex flex-col">
+          <span>Price: {{item['price']}}</span>
+          <span>Rating: {{item['rating']}} out of 5</span>
+        </p>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+<section class="flex justify-between gap-5 py-4">
+  <!--Rating and comment-->
+  <div class="flex flex-col w-full gap-5">
+    <div
+      class="flex flex-col border shadow-sm rounded-xl p-4 md:p-5 bg-[#F3E0D2] text-inherit border-orange-900"
+    >
+      <div class="flex flex-col justify-center space-y-3 py-4">
+        <span>Product Rating</span>
+        <span class="text-xl">{{rating}} out of 5</span>
+        <div class="flex gap-5">
+          {% for x in range(rating)%}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-star-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+            />
+          </svg>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div
+      class="flex flex-col border shadow-sm rounded-xl p-4 md:p-5 bg-[#F3E0D2] text-inherit border-orange-900"
+    >
+      Comments
+    </div>
+    {% if comments %} {% for comment in comments %}
+    <div
+      class="flex flex-col border shadow-sm rounded-xl p-4 md:p-5 bg-[#F3E0D2] text-inherit border-orange-900 gap-3"
+    >
+      <div class="flex gap-5 items-center">
+        {% if user %}
+        <img
+          class="inline-block h-[2.875rem] w-[2.875rem] rounded-lg"
+          src=""
+          alt="Image Description"
+        />
+        {% else %}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="42"
+          height="42"
+          fill="currentColor"
+          class="bi bi-person-circle"
+          viewBox="0 0 16 16"
+        >
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+          <path
+            fill-rule="evenodd"
+            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+          />
+        </svg>
+        {% endif %}
+        <div class="flex flex-col">
+          <span>{{comment['user']}}</span>
+          <span class="flex"></span>
+          <div class="flex">
+            <span class="border-r border-r-[#331904] pr-4">
+              {{comment['date']}}</span
+            >
+            <span class="pl-4">{{comment['variant']}}</span>
+          </div>
+        </div>
+      </div>
+      <p>{{comment['comment']}}</p>
+    </div>
+    {%endfor%} {% endif%}
+    <form
+      id="submit"
+      class="flex flex-col border shadow-sm rounded-xl p-4 md:p-5 bg-[#F3E0D2] text-inherit border-orange-900"
+      action=""
+    >
+      <label class="text-xl font-bold" for="">Comment a review</label>
+      <textarea
+        name="text"
+        class="py-3 px-4 block w-full rounded-lg text-sm disabled:opacity-50 disabled:pointer-events-none bg-[#331904] text-[#D9AE87]"
+        rows="3"
+      ></textarea>
+      <label class="text-xl font-bold" for="">Rating</label>
+      <input
+        class="py-3 px-4 block w-full rounded-lg text-sm disabled:opacity-50 disabled:pointer-events-none bg-[#331904] text-[#D9AE87]"
+        name="rating"
+        type="number"
+      />
+      <label class="text-xl font-bold" for="">Variant</label>
+      <input
+        class="py-3 px-4 block w-full rounded-lg text-sm disabled:opacity-50 disabled:pointer-events-none bg-[#331904] text-[#D9AE87]"
+        name="variant"
+        type="text"
+      />
+      <button type="submit">Add Review</button>
+    </form>
+  </div>
+
+  <div
+    class="flex flex-col border shadow-sm rounded-xl p-4 md:p-5 bg-[#F3E0D2] text-inherit border-orange-900 w-full"
+  >
+    <span>Product Description</span>
+    <p>{{description}}</p>
+  </div>
+</section>
+<script>
+  const maya_buy = document.getElementById("maya_buy");
+  maya_buy.href = `/api/checkout?id={{id}}&variant=SM&user_id=${localStorage.getItem(
+    "user_id"
+  )}`;
+  const element = document.getElementById("submit");
+  element.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const res = await fetch("/api/comment/{{id}}", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        message: event.target.text.value,
+        rating: event.target.rating.value,
+        user_id: localStorage.getItem("user_id"),
+        variant: event.target.variant.value,
+      }),
+    });
+    if (res.ok) {
+      window.location.reload();
+    }
+  });
+</script>

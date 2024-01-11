@@ -1,0 +1,62 @@
+<section class="py-5 flex flex-col justify-center items-center gap-5">
+  <h1 class="text-3xl font-bold text-[#331904]">Collections</h1>
+  <div class="flex flex-wrap gap-5">
+    {% for category in items.keys() %}
+    <a
+      href="#{{category}}"
+      type="button"
+      class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-[#331904] text-[#D9AE87] hover:bg-opacity-75 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 transition-all"
+    >
+      {{category}}
+      <svg
+        class="flex-shrink-0 w-4 h-4"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="m5 11 4-7" />
+        <path d="m19 11-4-7" />
+        <path d="M2 11h20" />
+        <path
+          d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8c.9 0 1.8-.7 2-1.6l1.7-7.4"
+        />
+        <path d="m9 11 1 9" />
+        <path d="M4.5 15.5h15" />
+        <path d="m15 11-1 9" />
+      </svg>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% for category in items.keys() %}
+<section class="py-4 space-y-4">
+  <h2 id="{{category}}" class="text-4xl font-bold">{{category}}</h2>
+  <div class="flex flex-wrap gap-4">
+    {%for item in items[category]%}
+    <a
+      class="w-64 h-full flex flex-col border shadow-sm rounded-xl bg-[#F3E0D2] text-inherit border-orange-900"
+      href="/product/?id={{item['id']}}"
+    >
+      <img
+        class="w-full h-auto rounded-t-xl object-contain"
+        src="/api/image/{{item['id']}}"
+        alt="Image Description"
+      />
+      <div class="p-4 md:p-5">
+        <h3 class="text-lg font-bold">{{item['item']}}</h3>
+        <p class="mt-1 flex flex-col">
+          <span>Price: {{item['price']}}</span>
+          <span>Rating: {{item['rating']}} out of 5</span>
+        </p>
+      </div>
+    </a>
+    {%endfor%}
+  </div>
+</section>
+{% endfor %}

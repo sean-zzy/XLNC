@@ -1,0 +1,46 @@
+<section class="flex items-center w-full justify-between">
+  <!-- Hero page -->
+  <div class="flex flex-col items-center space-y-3">
+    <h1 class="text-center text-6xl font-bold">
+      Find the Best Fashion Style.<br />
+      Find XLNC in your life.
+    </h1>
+    <a
+      href="/categories/"
+      class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-[#331904] text-[#D9AE87] hover:bg-opacity-75 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+    >
+      Shop Now
+    </a>
+  </div>
+  <img
+    class="rounded-bl-[12rem]"
+    src="https://t4.ftcdn.net/jpg/02/82/72/09/360_F_282720917_7ZtAfEqEfA6CRT66imV9avGWXEg9w6Jt.jpg"
+    alt=""
+  />
+</section>
+{% for category in items.keys() %}
+<section class="py-4 space-y-4">
+  <h2 class="text-4xl font-bold">{{category}}</h2>
+  <div class="flex flex-wrap gap-4">
+    {%for item in items[category]%}
+    <a
+      class="w-64 h-full flex flex-col border shadow-sm rounded-xl bg-[#F3E0D2] text-inherit border-orange-900"
+      href="/product/?id={{item['id']}}"
+    >
+      <img
+        class="w-full h-auto rounded-t-xl object-contain"
+        src="/api/image/{{item['id']}}"
+        alt="Image Description"
+      />
+      <div class="p-4 md:p-5">
+        <h3 class="text-lg font-bold">{{item['item']}}</h3>
+        <p class="mt-1 flex flex-col">
+          <span>Price: {{item['price']}}</span>
+          <span>Rating: {{item['rating']}} out of 5</span>
+        </p>
+      </div>
+    </a>
+    {%endfor%}
+  </div>
+</section>
+{% endfor %}

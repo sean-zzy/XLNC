@@ -1,0 +1,114 @@
+<main class="h-screen bg-[#fff0e0] text-[#331904] overflow-y-auto">
+  <header class="h-fit py-4 md:px-24 px-16">
+    <nav class="flex justify-between items-center">
+      <div class="flex items-center">
+        <img height="48" width="48" src="/static/xlnc.png" alt="" />
+        <a href="/" class="text-3xl">XLNC</a>
+      </div>
+      <ul class="flex gap-5 items-center">
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/categories/"> Shops</a>
+        </li>
+        <li>
+          <a href="/account/">Account</a>
+        </li>
+        <li class="border-r border-r-[#331904] pr-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-search"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
+            />
+          </svg>
+        </li>
+        <li>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-basket"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1v4.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 13.5V9a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1.217L5.07 1.243a.5.5 0 0 1 .686-.172zM2 9v4.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V9zM1 7v1h14V7zm3 3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 4 10m2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 6 10m2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 8 10m2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5m2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5"
+            />
+          </svg>
+        </li>
+        <div id="not_login" class="flex gap-5">
+          <li>
+            <a
+              class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-[#D9AE87] hover:bg-opacity-75 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+              href="/auth/login/"
+              >Login</a
+            >
+          </li>
+          <li>
+            <a
+              class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-[#331904] text-[#D9AE87] hover:bg-opacity-75 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+              href="/auth/register/"
+              >Sign Up</a
+            >
+          </li>
+        </div>
+        <li>
+          <button
+            id="sign_out"
+            class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-[#D9AE87] hover:bg-opacity-75 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+          >
+            Sign out
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <article class="px-16">{{slot}}</article>
+  <footer
+    class="flex items-center justify-between py-4 bg-[#331904] text-[#D9AE87] md:px-24"
+  >
+    <ul class="space-y-4">
+      <li><span class="text-3xl font-bold">XLNC E-commerce</span></li>
+      <li>2023 all rights reserve</li>
+      <li>Terms and conditions</li>
+      <li>Privacy policy</li>
+      <li class="underline">
+        <a target="_blank" href="https://po-key.github.io/pypox">
+          Powered by Pypox
+        </a>
+      </li>
+    </ul>
+    <div class="flex justify-between gap-5">
+      <ul class="list-disc">
+        <li>About Us</li>
+        <li>Contact Us</li>
+        <li>FAQs</li>
+      </ul>
+      <ul>
+        <li>Facebook</li>
+        <li>Instagram</li>
+        <li>Twitter</li>
+        <li>Tiktok</li>
+      </ul>
+    </div>
+  </footer>
+</main>
+<script>
+  if (window.localStorage.getItem("user_id")) {
+    document.getElementById("not_login").style.display = "none";
+  } else {
+    document.getElementById("sign_out").style.display = "none";
+  }
+  const signOut = (event) => {
+    window.localStorage.removeItem("user_id");
+    window.location.href = "/";
+  };
+  document.getElementById("sign_out").addEventListener("click", signOut);
+</script>
